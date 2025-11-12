@@ -25,8 +25,10 @@ def weather(city: str = Query("Canton")):
         temp = current.get("temperature")
         wind = current.get("windspeed")
         return f"It’s {temp}°C in {city.title()} with wind {wind} km/h."
-    except:
-        return "Something went wrong."
+    except Exception:
+        return "Something went wrong. Try again."
+
+
 
 
 
