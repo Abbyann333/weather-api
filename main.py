@@ -3,14 +3,13 @@ import requests
 
 app = FastAPI()
 
-@app.get("/")                       # homepage (works already)
+@app.get("/")
 def home():
     return "Welcome to Abby’s Weather API! Go to /weather for weather."
 
-@app.get("/weather")               # THIS is the route we need
+@app.get("/weather")
 def weather(city: str = Query("Canton")):
     try:
-        # geocode
         geo = requests.get(
             f"https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1"
         ).json()
@@ -19,7 +18,6 @@ def weather(city: str = Query("Canton")):
         lat = geo["results"][0]["latitude"]
         lon = geo["results"][0]["longitude"]
 
-        # current weather only
         weather_data = requests.get(
             f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
         ).json()
@@ -27,8 +25,9 @@ def weather(city: str = Query("Canton")):
         temp = current.get("temperature")
         wind = current.get("windspeed")
         return f"It’s {temp}°C in {city.title()} with wind {wind} km/h."
-    except Exception:
-        return "Something went wrong. Try again."
+    except:
+        return "Something went wrong."
+
 
 
 
