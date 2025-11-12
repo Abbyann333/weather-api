@@ -3,19 +3,14 @@ import requests
 
 app = FastAPI(title="Abby’s Free Weather API")
 
-# Homepage route
+# Homepage
 @app.get("/")
-def home():https://your-app-name.onrender.com/
-    return {
-        "message": "Welcome to Abby’s Weather API! Use /weather?city=CityName to get weather info."
-    }
+def home():
+    return {"message": "Welcome to Abby’s Weather API! Use /weather?city=CityName to get weather info."}
 
-# Weather route
+# Weather route with default city (Canton, Ohio)
 @app.get("/weather")
-def get_weather(city: str = Query(None, description="City name")):
-    if not city:https://your-app-name.onrender.com/weather?city=Canton
-        return {"error": "Please provide a city using ?city=CityName"}
-
+def get_weather(city: str = Query("Canton", description="City name, default Canton")):
     # Geocoding API to get latitude/longitude for the city
     geo_url = f"https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1"
     geo_response = requests.get(geo_url)
@@ -41,6 +36,8 @@ def get_weather(city: str = Query(None, description="City name")):
         "windspeed": current.get("windspeed"),
         "time": current.get("time"),
     }
+
+
 
 
 
