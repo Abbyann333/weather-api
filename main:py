@@ -3,8 +3,7 @@ import requests
 
 app = FastAPI()
 
-@app.get("/weather-api")
-def home():
+@app.get("/weather-api")def home():
     return "Welcome to Abby’s Weather API! Go to /weather for weather."
 
 @app.get("/weather")
@@ -27,6 +26,7 @@ def weather(city: str = Query("Canton")):
         return f"It’s {temp}°C in {city.title()} with wind {wind} km/h."
     except Exception:
         return "Something went wrong. Try again."
+
 
 
 
