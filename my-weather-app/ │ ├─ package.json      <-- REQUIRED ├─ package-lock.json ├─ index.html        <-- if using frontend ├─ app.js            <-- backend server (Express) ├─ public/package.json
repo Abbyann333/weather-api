@@ -1,0 +1,8 @@
+my-weather-app/
+│
+├─ package.json      <-- REQUIRED
+├─ package-lock.json
+├─ index.html        <-- if using frontend
+├─ app.js            <-- backend server (Express)
+├─ public/           <-- optional for static files
+└─ ...other files
