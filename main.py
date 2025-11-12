@@ -60,6 +60,9 @@ def get_weather(city: str = Query(..., description="City name")):
         "windspeed": data["current_weather"]["windspeed"],
         "time": data["current_weather"]["time"]
     }
+https://your-app-name.onrender.com/weather?city=Alliance
+https://your-app-name.onrender.com/docs
+
 
 
 
