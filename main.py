@@ -10,8 +10,9 @@ def get_weather(city: str = Query(..., description="City name")):
     response = requests.get(url)
     data = response.json()
     return {
-        "city": city,
+        "city": city, canton
         "temperature": data["current_weather"]["temperature"],
         "windspeed": data["current_weather"]["windspeed"],
         "time": data["current_weather"]["time"]
     }
+
