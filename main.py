@@ -5,7 +5,7 @@ app = FastAPI(title="Abby’s Free Weather API")
 
 # Homepage route
 @app.get("/")
-def home():
+def home():https://your-app-name.onrender.com/
     return {
         "message": "Welcome to Abby’s Weather API! Use /weather?city=CityName to get weather info."
     }
@@ -13,7 +13,7 @@ def home():
 # Weather route
 @app.get("/weather")
 def get_weather(city: str = Query(None, description="City name")):
-    if not city:
+    if not city:https://your-app-name.onrender.com/weather?city=Canton
         return {"error": "Please provide a city using ?city=CityName"}
 
     # Geocoding API to get latitude/longitude for the city
@@ -41,6 +41,7 @@ def get_weather(city: str = Query(None, description="City name")):
         "windspeed": current.get("windspeed"),
         "time": current.get("time"),
     }
+
 
 
 
